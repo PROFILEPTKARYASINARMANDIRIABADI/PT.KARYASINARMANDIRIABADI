@@ -12,7 +12,7 @@ const serviceData = [
             {
                 name: 'Pembangunan Pasar Pramuka',
                 location: 'Jakarta Timur',
-images: ['assets/images/pembangunan ruko modern.png', 'assets/images/pembangunan ruko modern1.png', 'assets/images/pembangunan ruko modern2 .jpeg', 'assets/images/pembangunan ruko modern2 .jpeg']
+images: ['assets/images/pembangunan ruko modern.png', 'assets/images/pembangunan ruko modern1.png', ]
             }
         ]
     },
@@ -24,7 +24,7 @@ images: ['assets/images/pembangunan ruko modern.png', 'assets/images/pembangunan
             {
                 name: 'Pembangunan Rumah Hunian',
                 location: 'Pamulang Timur, Tanggerang Selatan',
-images: ['assets/images/rumah hunian.jpeg']
+images: ['assets/images/rumah hunian.jpeg', 'assets/images/pembangunan ruko modern2 .jpeg']
             }
         ]
     },
@@ -53,12 +53,12 @@ images: ['assets/images/Jalan.jpeg', 'assets/images/Jalan1.jpeg', 'assets/images
         ]
     },
     {
-        title: 'Konstruksi Kateenfil',
+        title: 'Galian Dan Timbunan',
         icon: '🏔️',
         desc: 'Untuk Melakukan Persiapan, kegiatan Pemerataan Lahan.',
         projects: [
             {
-                name: 'Pembangunan Kateenfil',
+                name: 'Pembangunan Galian Dan Timbunan',
                 location: 'Jl.Nangka, Sawangan Baru, Depok, Jawa Barat',
 images: ['assets/images/Kateenfil.jpeg', 'assets/images/Kateenfil2.jpeg', 'assets/images/Kateenfil3.jpeg']
             }
