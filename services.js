@@ -4,15 +4,20 @@
  */
 
 const serviceData = [
-    {
-        title: 'Konstruksi Gedung Perkantoran',
+{
+        title: 'Konstruksi Pasar',
         icon: '🏢',
-        desc: 'Untuk Melakukan Persiapan,Kegiatan Operasional Dan/Atau Komersial Usaha.',
+        desc: 'Untuk Melakukan Persiapan, Kegiatan Operasional Dan/Atau Komersial Usaha.',
         projects: [
             {
                 name: 'Pembangunan Pasar Pramuka',
                 location: 'Jakarta Timur',
-images: ['assets/images/pembangunan ruko modern.png', 'assets/images/pembangunan ruko modern1.png', ]
+                images: [
+                    'assets/images/pembangunan ruko modern.png',
+                    'assets/images/pembangunan ruko modern1.png',
+                    'assets/images/pembangunan ruko modern3.jpeg',
+                    'assets/images/pembangunan ruko modern4.jpeg'
+                ]
             }
         ]
     },
@@ -76,31 +81,7 @@ images: ['assets/images/Irigasi.jpeg', 'assets/images/Irigasi1.jpeg', 'assets/im
             }
         ]
     },
-    {
-        title: 'Perdagangan Besar Berbagai Macam Barang',
-        icon: '📦',
-        desc: 'Penyediaan dan distribusi berbagai komoditas serta kebutuhan industri dalam skala besar dengan jaminan stok.',
-        projects: [
-            {
-                name: 'Suplai Material Industri',
-                location: 'Kawasan Industri',
-                images: ['https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800', 'https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=800']
-            }
-        ]
-    },
-    {
-        title: 'Perdagangan Besar Atas Dasar Balas Jasa atau Kontrak',
-        icon: '🤝',
-        desc: 'Layanan jasa perantara dan keagenan perdagangan profesional untuk menghubungkan produsen dengan konsumen melalui kontrak.',
-        projects: [
-            {
-                name: 'Kemitraan Distribusi',
-                location: 'Jakarta Pusat',
-                images: ['https://images.unsplash.com/photo-1454165833767-027ffea7028d?q=80&w=800', 'https://images.unsplash.com/photo-1521791136064-7986c2959210?q=80&w=800']
-            }
-        ]
-    },
-];
+    ];
 
 let currentServiceIndex = null;
 

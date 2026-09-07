@@ -73,3 +73,39 @@ html {
 iframe {
     border: none;
 }
+
+/* 6. SECURITY & PROTECTION */
+/* Cegah pemilihan teks di seluruh konten (terutama dokumen legal) */
+body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Izinkan pengguna menyalin teks pada form kontak (input/textarea) */
+input, textarea {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+/* Cegah drag gambar & PDF */
+img {
+    -webkit-user-drag: none;
+    pointer-events: auto;
+    -webkit-touch-callout: none;
+}
+
+#pdfViewer {
+    pointer-events: auto;
+    background: white;
+}
+
+/* Cegah gambar layanan agar tidak bisa di-drag */
+#serviceGrid img, #modalImageContainer img {
+    -webkit-user-drag: none;
+    -moz-user-select: none;
+    user-select: none;
+}

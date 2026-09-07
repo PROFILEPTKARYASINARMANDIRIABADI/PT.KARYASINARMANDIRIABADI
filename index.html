@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta name="robots" content="index, follow">
+    <meta name="format-detection" content="telephone=no">
     <title>Profil Perusahaan | PT.KARYA SINAR MANDIRI ABADI</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
@@ -167,8 +173,8 @@
             <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-red-500 text-3xl font-bold transition-colors z-10">&times;</button>
             <div class="p-4 md:p-8 flex-grow flex flex-col overflow-hidden">
                 <h3 id="modalTitle" class="text-xl md:text-2xl font-bold text-blue-900 mb-4 md:mb-6 pr-10 border-b pb-4"></h3>
-                <div class="bg-gray-100 rounded-2xl overflow-hidden shadow-inner h-[70vh] md:h-[80vh] w-full">
-                    <iframe id="pdfViewer" src="" class="w-full h-full"></iframe>
+                <div class="bg-gray-100 rounded-2xl overflow-hidden shadow-inner h-[70vh] md:h-[80vh] w-full relative no-rightclick">
+                    <iframe id="pdfViewer" src="" class="w-full h-full block"></iframe>
                 </div>
                 <div class="mt-4 md:mt-6 pt-4 border-t flex justify-between items-center">
                     <span class="text-sm text-gray-400">Dokumen Resmi PT KSMA</span>
