@@ -52,7 +52,7 @@ const whatsappBot = require('./whatsapp-bot');
 const ROOT = __dirname;
 const PDF_DIR = path.join(ROOT, 'pdf');
 const PORT = Number(process.env.PORT) || 3000;
-const HOST = process.env.HOST || '127.0.0.1';
+const HOST = process.env.HOST || '0.0.0.0';
 
 /* ---------------- Token store (in-memory) ---------------- */
 const TOKEN_TTL_MS = 60 * 60 * 1000; // 1 jam
@@ -300,7 +300,7 @@ const server = http.createServer(function (req, res) {
 });
 
 server.listen(PORT, HOST, function () {
-    const mode = HOST === '127.0.0.1' ? 'localhost' : HOST;
+    const mode = HOST === '0.0.0.0' || HOST === '127.0.0.1' ? 'localhost' : HOST;
     console.log('PT KSMA server berjalan:');
     console.log('  http://' + mode + ':' + PORT);
     console.log('  Proxy PDF aktif di /api/pdf (token-gated). Akses /pdf langsung ditolak.');
