@@ -129,7 +129,7 @@ function pdfHeaders(fileName) {
         'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
         'Pragma': 'no-cache',
         'Expires': '0',
-        'Content-Security-Policy': "default-src 'none'; sandbox"
+        'Content-Security-Policy': "default-src 'none'; object-src 'self'"
     });
 }
 
@@ -149,8 +149,16 @@ const MIME = {
     '.pdf': 'application/pdf'
 };
 
+function safeDecode(str) {
+    try {
+        return decodeURIComponent(str);
+    } catch (e) {
+        return String(str).replace(/%/g, '');
+    }
+}
+
 function sanitizeName(name) {
-    return path.basename(String(name)).replace(/[^a-zA-Z0-9 ._()-]/g, '');
+    return path.basename(String(name)).replace(/[^a-zA-Z0-9 ._()-]/g, '').trim();
 }
 
 const DENY_PATHS = ['/server.js', '/package.json', '/package-lock.json', '/node_modules', '/.git', '/.env'];
@@ -209,7 +217,9 @@ const server = http.createServer(function (req, res) {
 
     /* ---------- API: proxy dokumen PDF (butuh token) ---------- */
     if (p.startsWith('/api/pdf/')) {
-        const file = sanitizeName(p.slice('/api/pdf/'.length));
+        const rawName = p.slice('/api/pdf/'.length);
+        const decoded = safeDecode(rawName);
+        const file = sanitizeName(decoded);
         if (!file || !/\.pdf$/i.test(file)) {
             send(res, 400, 'Bad request');
             return;
