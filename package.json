@@ -1,12 +1,13 @@
 {
   "name": "pt-ksma-website",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
-  "description": "Website profil PT KARYA SINAR MANDIRI ABADI dengan proxy PDF anti-download.",
+  "description": "Website profil PT KARYA SINAR MANDIRI ABADI dengan proxy PDF anti-download dan WhatsApp auto-reply AI.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "bot:status": "node -e \"const b=require('./whatsapp-bot'); console.log('WhatsApp Bot Config:', b.CONFIG)\""
   },
   "engines": {
     "node": ">=18"

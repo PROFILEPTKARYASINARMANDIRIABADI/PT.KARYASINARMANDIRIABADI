@@ -4,7 +4,7 @@
  */
 
 // Harus sama dengan nomor pada contact.html (wa.me)
-const WHATSAPP_PHONE_NUMBER = "6287828680690";
+const WHATSAPP_PHONE_NUMBER = "6281993679626";
 const COMPANY_EMAIL_ADDRESS = "karyasinarmandiriabadi@outlook.co.id";
 
 /**

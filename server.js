@@ -20,6 +20,35 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 
+// ==================== Load .env file ====================
+function loadEnvFile() {
+    const envPath = path.join(__dirname, '.env');
+    if (!fs.existsSync(envPath)) return;
+    
+    const content = fs.readFileSync(envPath, 'utf8');
+    const lines = content.split('\n');
+    
+    for (const line of lines) {
+        const trimmed = line.trim();
+        if (!trimmed || trimmed.startsWith('#')) continue;
+        
+        const eqIndex = trimmed.indexOf('=');
+        if (eqIndex === -1) continue;
+        
+        const key = trimmed.slice(0, eqIndex).trim();
+        const value = trimmed.slice(eqIndex + 1).trim();
+        
+        if (!process.env[key]) {
+            process.env[key] = value;
+        }
+    }
+}
+
+loadEnvFile();
+
+// ==================== WhatsApp Bot ====================
+const whatsappBot = require('./whatsapp-bot');
+
 const ROOT = __dirname;
 const PDF_DIR = path.join(ROOT, 'pdf');
 const PORT = Number(process.env.PORT) || 3000;
@@ -124,7 +153,7 @@ function sanitizeName(name) {
     return path.basename(String(name)).replace(/[^a-zA-Z0-9 ._()-]/g, '');
 }
 
-const DENY_PATHS = ['/server.js', '/package.json', '/package-lock.json', '/node_modules', '/.git'];
+const DENY_PATHS = ['/server.js', '/package.json', '/package-lock.json', '/node_modules', '/.git', '/.env'];
 const DENY_PREFIX = ['/.vscode', '/pdf']; // /pdf hanya lewat proxy token
 
 /* ---------------- Requester ---------------- */
@@ -204,6 +233,29 @@ const server = http.createServer(function (req, res) {
         }
         res.writeHead(200, pdfHeaders(file));
         fs.createReadStream(filePath).pipe(res);
+        return;
+    }
+
+    /* ---------- API: WhatsApp Webhook ---------- */
+    if (p === '/api/webhook/whatsapp') {
+        // GET: Verifikasi webhook dari Meta
+        if (req.method === 'GET') {
+            whatsappBot.handleWebhookVerification(url.searchParams, res);
+            return;
+        }
+        
+        // POST: Pesan masuk dari WhatsApp
+        if (req.method === 'POST') {
+            let body = '';
+            req.on('data', (chunk) => body += chunk);
+            req.on('end', async () => {
+                const signature = req.headers['x-hub-signature-256'] || '';
+                await whatsappBot.handleWebhookMessage(body, signature, res);
+            });
+            return;
+        }
+        
+        send(res, 405, 'Method Not Allowed');
         return;
     }
 
